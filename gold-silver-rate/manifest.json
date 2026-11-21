@@ -19,8 +19,8 @@
     "https://snapdata.dev/*"
   ],
   "icons": {
-    "16": "assets/logo-128.png",
-    "32": "assets/logo-128.png",
+    "16": "assets/logo-32.png",
+    "32": "assets/logo-32.png",
     "48": "assets/logo-128.png",
     "128": "assets/logo-128.png"
   }
