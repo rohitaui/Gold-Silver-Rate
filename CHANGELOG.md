@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.3.4] — 2026-11-21
+- Replaced the Gold tab icon with the supplied transparent PNG artwork.
+- Removed the opaque black square background while preserving the original gold illustration.
+
+
 ## [1.3.3] — 2026-11-21
 - Reworked popup dimensions and spacing to fit the complete interface in one view without scrolling.
 - Reduced chart height and compacted header, tabs, price cards and GST controls.
