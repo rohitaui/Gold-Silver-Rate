@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.3.5] — 2026-11-21
+- Removed the RATE DATE label and boxed date panel from the popup header.
+- Moved Refresh directly below the date as a highlighted text action, freeing horizontal space.
+
+
 ## [1.3.4] — 2026-11-21
 - Replaced the Gold tab icon with the supplied transparent PNG artwork.
 - Removed the opaque black square background while preserving the original gold illustration.
