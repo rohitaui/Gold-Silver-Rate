@@ -1,0 +1,47 @@
+name: Build and publish extension release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: Release tag (for example v1.2.9)
+        required: true
+        default: v1.2.9
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify manifest and JavaScript
+        run: |
+          python -m json.tool gold-silver-rate/manifest.json >/dev/null
+          for file in gold-silver-rate/*.js; do node --check "$file"; done
+      - name: Verify release version
+        env:
+          INPUT_TAG: ${{ github.event.inputs.tag_name }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          TAG="${INPUT_TAG:-$REF_NAME}"
+          VERSION="v$(python -c "import json; print(json.load(open('gold-silver-rate/manifest.json'))['version'])")"
+          test "$TAG" = "$VERSION" || { echo "Tag $TAG does not match manifest $VERSION"; exit 1; }
+      - name: Package Chrome and Edge builds
+        run: |
+          cd gold-silver-rate
+          zip -r ../gold-silver-rate-chrome.zip . -x "*.DS_Store"
+          cp ../gold-silver-rate-chrome.zip ../gold-silver-rate-edge.zip
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.tag_name || github.ref_name }}
+          name: Gold & Silver Rate ${{ github.event.inputs.tag_name || github.ref_name }}
+          generate_release_notes: true
+          files: |
+            gold-silver-rate-chrome.zip
+            gold-silver-rate-edge.zip
