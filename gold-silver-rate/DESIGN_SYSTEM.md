@@ -13,6 +13,12 @@ The interface is adapted from the supplied Skylearn design-system reference.
 ## Intentional adaptation
 Skylearn is designed for children's learning products. Gold & Silver Rate is a financial information utility, so the UI adopts its color, typography, spacing, radius, elevation and accessibility foundations, while omitting child-oriented illustrations, rewards and copy.
 
+## Typography
+- Use a restrained weight scale: 700 for the product title, 650 for selected controls and card labels, 600 for primary price values, 500–550 for supporting labels, and 450 for chart metadata and caveats.
+- Keep price figures visually prominent through size and tabular numerals rather than excessive boldness.
+- Avoid using extra-bold weights (800–900) for ordinary labels, tabs and secondary information.
+- Use system-native Inter-like sans-serif fallbacks and antialiasing for a clean, readable hierarchy without a remote font dependency.
+
 ## Layout
 - Header: India flag, product title, observation date with a text-style Refresh action beneath it, and settings control.
 - Compact single-view popup: balanced spacing between header, tabs, history chart, price cards and GST controls; no internal scrolling.
