@@ -18,9 +18,9 @@ jobs:
       - name: Package extension
         run: |
           cd gold-silver-rate
-          zip -r ../gold-silver-rate-v1.2.9.zip . -x "*.DS_Store"
+          zip -r ../gold-silver-rate-v1.3.0.zip . -x "*.DS_Store"
       - uses: actions/upload-artifact@v4
         with:
-          name: gold-silver-rate-v1.2.9
-          path: gold-silver-rate-v1.2.9.zip
+          name: gold-silver-rate-v1.3.0
+          path: gold-silver-rate-v1.3.0.zip
           if-no-files-found: error
