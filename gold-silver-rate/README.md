@@ -1,12 +1,14 @@
 # Gold & Silver Rate — Chrome Extension
 
-Gold & Silver Rate is a compact Chrome extension for checking India-wide daily benchmark values for gold and silver.
+Gold & Silver Rate is a Chrome extension for checking India-wide daily benchmark values for gold and silver.
 
 ## Features
 - Gold: 24K, 22K and 18K, displayed per 10 grams.
 - Silver: 1kg, 10g and 1g reference values.
 - India-wide benchmark rates; no location picker.
-- Interactive price-history chart with week, month and year ranges for gold and silver.
+- Interactive price-history chart above the rate cards, with Week (7 days), Month (30 days) and Year (12 months) ranges for gold and silver.
+- Historical chart uses published daily observations only; carried-forward and missing rows are not plotted.
+- Chart values follow the selected GST display mode and use per-10g units.
 - Manual refresh from the popup.
 - Last-successful response cached locally.
 - Optional estimated 3% GST-inclusive display.
