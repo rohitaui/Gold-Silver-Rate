@@ -84,7 +84,8 @@ function renderHistory(observations){
   const lastSeg=segs[segs.length-1],dot=lastSeg[lastSeg.length-1];
   const area=lastSeg.length>1?lastSeg.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+","+p.y.toFixed(1)).join(" ")+` L ${dot.x} ${H-B} L ${lastSeg[0].x} ${H-B} Z`:"";
   const labels=[pts[0],pts[Math.floor((pts.length-1)/2)],pts[pts.length-1]].filter(Boolean);
-  const yLabels=[0,.5,1].map(t=>({y:T+t*(H-T-B),v:hi-t*(hi-lo)}));\n  $("historyChart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Historical price chart">
+  const yLabels=[0,.5,1].map(t=>({y:T+t*(H-T-B),v:hi-t*(hi-lo)}));
+  $("historyChart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Historical price chart">
     <defs><linearGradient id="historyFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3B82F6" stop-opacity=".18"/><stop offset="1" stop-color="#3B82F6" stop-opacity="0"/></linearGradient></defs>
     ${yLabels.map(a=>`<line class="chart-grid" x1="${L}" x2="${W}" y1="${a.y}" y2="${a.y}"/><text class="chart-y-label" x="0" y="${a.y+3}">${Math.round(a.v).toLocaleString("en-IN")}</text>`).join("")}
     ${area?`<path class="chart-area" d="${area}"/>`:""}${paths.map(d=>`<path class="chart-line" d="${d}"/>`).join("")}
