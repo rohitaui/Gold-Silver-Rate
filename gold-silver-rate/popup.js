@@ -1,4 +1,8 @@
 const $ = id => document.getElementById(id);
+
+// Resolve extension artwork explicitly so image URLs remain correct in packaged installs.
+$("goldTab").querySelector(".tab-icon").src = chrome.runtime.getURL("assets/gold-tab.png");
+$("silverTab").querySelector(".tab-icon").src = chrome.runtime.getURL("assets/silver-tab.png");
 let settings = { priceMode: "exclusive" };
 let currentData = null;
 
