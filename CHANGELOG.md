@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.7] — 2026-11-21
+- Increased spacing between the header, metal tabs, history chart, rate cards and GST controls.
+- Improved internal card padding and chart control spacing for a less cramped visual hierarchy.
+- Kept the popup constrained to a single view with no internal scrolling, using compact adjustments only where needed.
+
+
 ## [1.3.6] — 2026-11-21
 - Corrected history loading to use the documented series selectors with fallback requests.
 - Week and Month views are filtered from the available 30-day historical response; Year uses the provider's available yearly response and falls back to available 30-day coverage.
