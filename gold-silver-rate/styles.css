@@ -34,9 +34,9 @@ body.options{min-height:100vh;padding:32px}.options-wrap{max-width:620px;margin:
 button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #93C5FD;outline-offset:2px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
 
-.history-card{margin:10px 0;padding:14px 16px 11px;border:1px solid var(--line);border-radius:24px;background:#fff}
+.history-card{margin:10px 0 12px;padding:15px 16px 12px;border:1px solid #D7E1EF;border-radius:24px;background:linear-gradient(145deg,#FFFFFF 0%,#F8FBFF 100%)}
 .history-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.history-title{font-size:14px;font-weight:800;color:var(--ink)}
+.history-title{font-size:14px;font-weight:850;letter-spacing:.035em;color:var(--ink)}
 .history-subtitle{margin-top:3px;font-size:10px;color:var(--muted);font-weight:600}
 .history-ranges{display:flex;gap:2px;padding:3px;border-radius:999px;background:var(--inset)}
 .history-range{padding:6px 9px;border:0;border-radius:999px;background:transparent;color:var(--muted);font-size:10px;font-weight:750}
@@ -45,11 +45,27 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .history-summary strong{font:700 18px ui-monospace,monospace;color:var(--ink)}
 .history-summary span{font-size:10px;font-weight:700;color:var(--muted)}
 .history-summary span.positive{color:#16A34A}.history-summary span.negative{color:#DC2626}
-.history-chart{height:108px;margin-top:7px;position:relative;overflow:hidden}
+.history-chart{height:142px;margin-top:9px;position:relative;overflow:hidden}
 .history-chart svg{display:block;width:100%;height:100%;overflow:visible}
 .chart-grid{stroke:#E2E8F0;stroke-width:1;stroke-dasharray:3 4}
 .chart-line{fill:none;stroke:var(--blue);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
 .chart-area{fill:url(#historyFill);stroke:none}.chart-dot{fill:#fff;stroke:var(--blue);stroke-width:2}
-.chart-label{font:9px ui-monospace,monospace;fill:#64748B}
+.chart-label{font:9px ui-monospace,monospace;fill:#64748B}.chart-y-label{font:9px ui-monospace,monospace;fill:#64748B}
 .history-loading,.history-empty{height:100%;display:grid;place-items:center;color:var(--muted);font-size:11px;text-align:center}
 .history-foot{display:flex;justify-content:space-between;gap:8px;margin-top:4px;color:#64748B;font-size:9px}
+
+/* Final popup layout refinements */
+.popup{width:600px;max-width:600px;padding:12px;border-radius:30px}
+.topbar{min-height:82px;padding:13px 17px}
+.market-title{font-size:22px;gap:11px;white-space:nowrap}
+.india-flag{width:40px;height:27px;flex-basis:40px}
+.tabs{margin:11px 0 12px;padding:4px;border-radius:26px}
+.tab{height:43px;font-size:15px;border-radius:18px}
+.tab-icon{width:36px;height:38px}
+.hero-card,.silver-hero{height:150px}
+.secondary-card{height:110px}
+.history-summary strong{font-size:20px;color:var(--blue-dark)}
+.history-summary span{padding:4px 8px;border-radius:999px;background:#DCFCE7;color:#15803D}
+.history-summary span.negative{background:#FEE2E2;color:#B91C1C}
+.history-foot{font-size:9px}
+@media(max-width:580px){.popup{width:100%;min-width:0}.market-title{font-size:18px}.update-block{gap:5px}.updated{min-width:90px}.refresh-btn{padding:7px 8px}}
