@@ -23,6 +23,7 @@ function obsValue(observations, instrumentId) {
 }
 function displayed(value) {
   if (value == null) return null;
+  // Snapdata benchmark rates are ex-GST; inclusive view adds estimated 3% GST.
   return settings.priceMode === "inclusive" ? Number(value) * 1.03 : Number(value);
 }
 function render() {
@@ -109,6 +110,8 @@ function showTab(which) {
   $("silverTab").classList.toggle("active", !gold);
   $("goldTab").setAttribute("aria-pressed", String(gold));
   $("silverTab").setAttribute("aria-pressed", String(!gold));
+  chrome.storage.local.set({activeTab: which});
 }
 $("goldTab").onclick = () => showTab("gold");
 $("silverTab").onclick = () => showTab("silver");
+(async()=>{const {activeTab="gold"}=await chrome.storage.local.get("activeTab");showTab(activeTab);})();
