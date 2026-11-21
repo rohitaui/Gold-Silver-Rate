@@ -5,7 +5,7 @@
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/rohitaui/Gold-Silver-Rate/main/gold-silver-rate/assets/logo-128.png" width="128" alt="Gold & Silver Rate logo">
+<img src="https://raw.githubusercontent.com/rohitaui/Gold-Silver-Rate/main/logo.png" width="240" alt="Gold & Silver Rate logo">
 
 # Gold &amp; Silver Rate
 
