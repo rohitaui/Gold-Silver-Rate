@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.6] — 2026-11-21
+- Corrected history loading to use the documented series selectors with fallback requests.
+- Week and Month views are filtered from the available 30-day historical response; Year uses the provider's available yearly response and falls back to available 30-day coverage.
+- Improved validation and diagnostics for empty or unexpected API responses.
+- Rebalanced popup spacing, card padding and chart proportions while keeping the full interface within one view.
+
+
 ## [1.3.5] — 2026-11-21
 - Removed the RATE DATE label and boxed date panel from the popup header.
 - Moved Refresh directly below the date as a highlighted text action, freeing horizontal space.
