@@ -135,3 +135,45 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,san
 .brand-name{font-weight:700}
 .options .settings-card h2{font-weight:650}
 .primary-btn{font-weight:650}
+
+
+/* v1.4.0 — calmer footer spacing and compact no-scroll popup */
+body.popup{
+  width:560px;max-width:560px;height:560px;max-height:560px;
+  overflow:hidden;display:flex;flex-direction:column;padding:10px;
+}
+.topbar{min-height:62px;padding:9px 12px}
+.tabs{margin:8px 0 9px;padding:4px}
+.tab{height:39px}
+.history-card{margin:0 0 9px;padding:10px 13px 8px}
+.history-head{gap:10px}
+.history-summary{margin-top:7px}
+.history-chart{height:66px;margin-top:5px}
+.history-foot{margin-top:3px}
+.hero-card,.silver-hero{height:98px}
+.rate-card{padding:11px 15px}
+.hero-price{margin-top:6px;font-size:29px}
+.hero-foot{margin-top:4px}
+.secondary-grid{gap:8px;margin-top:8px}
+.secondary-card{height:70px;padding:8px 12px}
+.secondary-price{margin-top:4px}
+.secondary-card .rate-unit{margin-top:2px}
+.bottom-row{
+  min-height:38px;margin-top:auto;padding:7px 2px 1px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  border-top:1px solid #E8EEF6;
+}
+.price-mode{gap:8px;flex:0 0 auto}
+.mode-label{font-size:9px;letter-spacing:.02em}
+.segmented{flex:0 0 auto}
+.segmented button{padding:6px 9px;font-size:10px}
+.notice{max-width:190px;font-size:9px;line-height:1.25}
+@media(max-height:580px){
+  body.popup{height:560px;max-height:560px}
+}
+@media(max-width:560px){
+  body.popup{width:100%;max-width:100%;height:560px;max-height:560px;padding:9px}
+  .notice{max-width:125px}
+  .mode-label{font-size:8px}
+  .segmented button{padding:6px 7px}
+}

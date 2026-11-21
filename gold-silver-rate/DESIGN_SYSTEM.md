@@ -25,6 +25,7 @@ Skylearn is designed for children's learning products. Gold & Silver Rate is a f
 - Use system-native Inter-like sans-serif fallbacks and antialiasing for a clean, readable hierarchy without a remote font dependency.
 
 ## Layout
+- Footer: GST controls and source note share a dedicated, balanced row with enough separation to remain readable. The popup is fixed to a single view and does not scroll.
 - Header: India flag, product title, observation date with a text-style Refresh action beneath it, and settings control.
 - Compact single-view popup: balanced spacing between header, tabs, history chart, price cards and GST controls; no internal scrolling.
 - Tabs: Gold / Silver.

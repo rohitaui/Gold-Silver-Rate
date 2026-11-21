@@ -9,6 +9,7 @@ Gold & Silver Rate is a Chrome extension for checking India-wide daily benchmark
 - The original transparent PNG is retained as `assets/logo-32.png` and referenced by all manifest icon sizes.
 
 ## Features
+- Bottom price-mode controls and source note have a dedicated, evenly spaced footer row. The popup is constrained to one view with no internal scrolling.
 - Gold: 24K, 22K and 18K, displayed per 10 grams.
 - Silver: 1kg, 10g and 1g reference values.
 - India-wide benchmark rates; no location picker.

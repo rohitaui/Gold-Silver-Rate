@@ -11,7 +11,7 @@
 
 ### India’s daily gold &amp; silver benchmark rates, at a glance.
 
-A lightweight Chrome extension for checking India-wide gold and silver benchmark rates, with a historical chart, a clean one-view layout and a distinctive gold-and-silver emblem.
+A lightweight Chrome extension for checking India-wide gold and silver benchmark rates, with a historical chart, a clean, no-scroll one-view layout and a distinctive gold-and-silver emblem.
 
 <div align="center">
 
@@ -53,7 +53,7 @@ Download the ZIP directly from the latest GitHub Release. Extract it, then load 
 | **Currency** | Indian Rupee (₹ / INR) |
 | **Data feed** | Snapdata · IBJA benchmark feed |
 | **Storage** | Chrome local storage |
-| **Current version** | 1.3.9 |
+| **Current version** | 1.4.0 |
 
 ## Why Gold & Silver Rate?
 

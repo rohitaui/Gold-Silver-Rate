@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.0] — 2026-11-21
+- Reworked the bottom price-mode footer to prevent the GST controls and source note from feeling cramped.
+- Reduced excess vertical spacing in the chart and rate cards to preserve a clean single-view layout.
+- Fixed the popup to a single 560px view with internal scrolling disabled.
+
+
 ## [1.3.9] — 2026-11-21
 - Adopted the supplied gold-and-silver emblem as the official extension logo.
 - Added the transparent logo asset and configured Manifest V3 icons for 16px, 32px, 48px and 128px display slots.
