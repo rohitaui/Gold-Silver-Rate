@@ -1,128 +1,61 @@
+
 *{box-sizing:border-box}
-:root{color-scheme:light;--blue:#3B82F6;--blue-dark:#1D4ED8;--ink:#0F172A;--muted:#475569;--line:#E2E8F0;--surface:#F8FAFC;--inset:#F1F5F9}
+:root{color-scheme:light;--blue:#3B82F6;--blue-dark:#1D4ED8;--ink:#0F172A;--muted:#475569;--line:#DFE7F1;--surface:#F8FAFC;--inset:#F1F5F9}
 body{margin:0;background:#fff;color:var(--ink);font-family:Inter,"Nunito Sans",system-ui,sans-serif}
-button{font:inherit;cursor:pointer;transition:all .16s ease}button:active{transform:scale(.985)}
-.popup{width:560px;padding:12px;border:1px solid var(--line);border-radius:30px;overflow:hidden}
-.topbar{min-height:78px;padding:12px 16px;background:var(--surface);border:1px solid var(--line);border-radius:28px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.market-block{flex:1;min-width:0}.market-title{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;letter-spacing:-.7px}.india-flag{display:block;flex:0 0 36px;width:36px;height:24px;border:1px solid #E2E8F0;border-radius:3px;box-shadow:0 1px 2px rgba(15,23,42,.12)}
-.update-block{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.updated{min-width:112px;min-height:52px;padding:7px 9px;background:var(--inset);border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;justify-content:center;gap:3px}
-.top-label{font-size:10px;font-weight:700;color:var(--muted)}.updated strong{font:11px ui-monospace,monospace}
-.refresh-btn{min-height:42px;padding:8px 11px;background:var(--blue);border:0;border-radius:18px;color:#fff;font-size:12px;font-weight:700}.refresh-btn:disabled{opacity:.55}
-.icon-btn{width:42px;height:42px;background:var(--surface);border:1px solid var(--line);border-radius:18px;color:var(--muted)}
-.tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:10px 0;padding:3px;background:var(--inset);border:1px solid var(--line);border-radius:28px}
-.tab{height:40px;border:0;border-radius:14px;background:transparent;color:var(--muted);font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px}
-.tab.active{background:var(--blue);color:white;box-shadow:0 3px 0 var(--blue-dark)}
-.tab-icon{width:32px;height:36px;object-fit:contain}.metal-view{display:block}.hidden{display:none!important}
-.rate-card{padding:16px 19px;border:1px solid var(--line);border-radius:26px;background:var(--surface)}
-.hero-card,.silver-hero{height:142px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(110deg,#EFF6FF,#F8FAFC);border:2px solid var(--blue)}
-.card-heading{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:.05em}.purity{font-size:11px;color:var(--muted);font-weight:600}
-.hero-price{margin-top:15px;font:32px ui-monospace,monospace;letter-spacing:-1.2px;color:var(--blue-dark)}
-.hero-foot{display:flex;align-items:center;justify-content:space-between;margin-top:8px}.rate-unit{font-size:10px;letter-spacing:.08em;color:var(--muted);font-weight:700}
-.featured-tag{padding:5px 8px;border-radius:999px;background:#FEF3C7;color:#92400E;font-size:10px;font-weight:700}
-.secondary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.secondary-card{height:104px;padding:13px 16px;display:flex;flex-direction:column;justify-content:center;border-radius:22px}
-.secondary-card .card-heading{font-size:11px;color:var(--muted)}.secondary-price{margin-top:12px;font:23px ui-monospace,monospace;letter-spacing:-.6px}.secondary-card .rate-unit{margin-top:5px}
+button{font:inherit;cursor:pointer;transition:background .16s ease,color .16s ease}
+button:focus-visible{outline:3px solid #93C5FD;outline-offset:2px}
+body.popup{width:600px;max-width:600px;max-height:600px;overflow:hidden;padding:12px;border:1px solid var(--line);border-radius:26px}
+.topbar{min-height:68px;padding:10px 13px;background:var(--surface);border:1px solid var(--line);border-radius:22px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.market-block{flex:1;min-width:0}.market-title{display:flex;align-items:center;gap:9px;font-size:20px;font-weight:850;letter-spacing:-.65px;white-space:nowrap}
+.india-flag{display:block;flex:0 0 36px;width:36px;height:24px;border:1px solid #E2E8F0;border-radius:3px;box-shadow:0 1px 2px rgba(15,23,42,.12)}
+.update-block{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.date-refresh{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;padding:0 2px}
+.date-refresh #updatedAt{font:700 13px ui-monospace,monospace;color:var(--ink);white-space:nowrap;letter-spacing:-.25px}
+.refresh-btn{display:inline-flex;align-items:center;gap:4px;padding:0;border:0;background:transparent;color:var(--blue-dark);font-size:11px;font-weight:800;line-height:1.2}
+.refresh-btn:hover{text-decoration:underline}.refresh-btn:disabled{opacity:.5}
+.icon-btn{width:38px;height:38px;flex:0 0 38px;background:var(--surface);border:1px solid var(--line);border-radius:15px;color:var(--muted)}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:10px 0;padding:4px;background:var(--inset);border:1px solid var(--line);border-radius:22px}
+.tab{height:42px;border:0;border-radius:15px;background:transparent;color:var(--muted);font-size:14px;font-weight:750;display:flex;align-items:center;justify-content:center;gap:9px}
+.tab.active{background:var(--blue);color:#fff;box-shadow:0 3px 0 var(--blue-dark)}
+.tab-icon{width:32px;height:34px;object-fit:contain}.metal-view{display:block}.hidden{display:none!important}
+.history-card{margin:0 0 10px;padding:12px 14px 9px;border:1px solid #D7E1EF;border-radius:21px;background:linear-gradient(145deg,#fff 0%,#F8FBFF 100%)}
+.history-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.history-title{font-size:13px;font-weight:850;letter-spacing:.035em;color:var(--ink)}
+.history-subtitle{margin-top:3px;font-size:11px;color:var(--muted);font-weight:650}
+.history-ranges{display:flex;gap:3px;padding:3px;border-radius:999px;background:var(--inset);flex-shrink:0}
+.history-range{padding:6px 10px;border:0;border-radius:999px;background:transparent;color:var(--muted);font-size:10px;font-weight:750}
+.history-range.active{background:#DBEAFE;color:var(--blue-dark)}
+.history-summary{display:flex;align-items:center;gap:9px;margin-top:8px}
+.history-summary strong{font:750 17px ui-monospace,monospace;color:var(--blue-dark)}
+.history-summary span{font-size:10px;font-weight:750;color:#15803D}
+.history-summary span.negative{color:#B91C1C}
+.history-chart{height:82px;margin-top:6px;position:relative;overflow:hidden}
+.history-chart svg{display:block;width:100%;height:100%;overflow:visible}
+.chart-grid{stroke:#E2E8F0;stroke-width:1;stroke-dasharray:3 4}.chart-line{fill:none;stroke:var(--blue);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.chart-area{fill:url(#historyFill);stroke:none}.chart-dot{fill:#fff;stroke:var(--blue);stroke-width:2}
+.chart-label,.chart-y-label{font:9px ui-monospace,monospace;fill:#64748B}
+.history-loading,.history-empty{height:100%;display:grid;place-items:center;color:var(--muted);font-size:11px;text-align:center;padding:8px}
+.history-foot{display:flex;justify-content:space-between;gap:8px;margin-top:4px;color:#64748B;font-size:9px}
+.rate-card{padding:13px 16px;border:1px solid var(--line);border-radius:21px;background:var(--surface)}
+.hero-card,.silver-hero{height:116px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(110deg,#EFF6FF,#F8FAFC);border:2px solid var(--blue)}
+.card-heading{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:850;letter-spacing:.04em}.purity{font-size:11px;color:var(--muted);font-weight:650}
+.hero-price{margin-top:8px;font:32px ui-monospace,monospace;letter-spacing:-1px;color:var(--blue-dark)}
+.hero-foot{display:flex;align-items:center;justify-content:space-between;margin-top:5px}
+.rate-unit{font-size:10px;letter-spacing:.06em;color:var(--muted);font-weight:750}
+.featured-tag{padding:4px 8px;border-radius:999px;background:#FEF3C7;color:#92400E;font-size:10px;font-weight:750}
+.secondary-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:9px}
+.secondary-card{height:83px;padding:10px 13px;display:flex;flex-direction:column;justify-content:center;border-radius:19px}
+.secondary-card .card-heading{font-size:10px;color:var(--muted)}
+.secondary-price{margin-top:6px;font:22px ui-monospace,monospace;letter-spacing:-.5px}.secondary-card .rate-unit{margin-top:3px}
 .silver-hero{border-color:#CBD5E1;background:linear-gradient(110deg,#F1F5F9,#F8FAFC)}.silver-hero .hero-price{color:#334155}.silver-tag{background:#E2E8F0;color:#334155}
-.bottom-row{min-height:40px;margin-top:12px;display:flex;align-items:center;justify-content:space-between;gap:8px}
-.price-mode{display:flex;align-items:center;gap:6px;white-space:nowrap}.mode-label{font-size:10px;color:var(--muted);font-weight:750}
+.bottom-row{min-height:36px;margin-top:9px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.price-mode{display:flex;align-items:center;gap:6px;white-space:nowrap}.mode-label{font-size:10px;color:var(--muted);font-weight:800}
 .segmented{display:flex;padding:2px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
-.segmented button{padding:6px 8px;border:0;border-radius:999px;background:transparent;color:var(--muted);font-size:11px;font-weight:700}.segmented button.active{background:#DBEAFE;color:var(--blue-dark)}
-.notice{max-width:190px;font-size:9px;line-height:1.25;text-align:right;color:var(--muted)}
+.segmented button{padding:6px 9px;border:0;border-radius:999px;background:transparent;color:var(--muted);font-size:10px;font-weight:750}
+.segmented button.active{background:#DBEAFE;color:var(--blue-dark)}
+.notice{max-width:185px;font-size:9px;line-height:1.3;text-align:right;color:var(--muted)}
+/* Options page */
 body.options{min-height:100vh;padding:32px}.options-wrap{max-width:620px;margin:auto}.brand{display:flex;align-items:center;gap:12px}.brand-mark{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:var(--blue);color:#fff;font-weight:800}.brand-name{font-weight:800}.brand-sub{font-size:11px;color:var(--muted)}
 .options h1{font-size:30px}.options .lead,.hint{color:var(--muted);line-height:1.6}.settings-card{margin:20px 0;padding:20px;border:1px solid var(--line);border-radius:26px;background:var(--surface)}.settings-card h2{font-size:17px}.options label{display:block;margin:13px 0 7px;color:var(--muted)}.options select{width:100%;min-height:46px;padding:10px;border:1px solid var(--line);border-radius:18px;background:white}.primary-btn{padding:12px 18px;border:0;border-radius:18px;background:var(--blue);color:#fff;font-weight:700}.options a{color:var(--blue-dark)}.hint{font-size:13px}.save-status{margin-left:10px;color:#16A34A}
-button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #93C5FD;outline-offset:2px}
+@media(max-width:600px){body.popup{width:100%;max-width:100%}.market-title{font-size:17px}.date-refresh #updatedAt{font-size:11px}.notice{max-width:125px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
-
-.history-card{margin:10px 0 12px;padding:15px 16px 12px;border:1px solid #D7E1EF;border-radius:24px;background:linear-gradient(145deg,#FFFFFF 0%,#F8FBFF 100%)}
-.history-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.history-title{font-size:14px;font-weight:850;letter-spacing:.035em;color:var(--ink)}
-.history-subtitle{margin-top:3px;font-size:10px;color:var(--muted);font-weight:600}
-.history-ranges{display:flex;gap:2px;padding:3px;border-radius:999px;background:var(--inset)}
-.history-range{padding:6px 9px;border:0;border-radius:999px;background:transparent;color:var(--muted);font-size:10px;font-weight:750}
-.history-range.active{background:#DBEAFE;color:var(--blue-dark)}
-.history-summary{display:flex;align-items:baseline;gap:9px;margin-top:11px}
-.history-summary strong{font:700 18px ui-monospace,monospace;color:var(--ink)}
-.history-summary span{font-size:10px;font-weight:700;color:var(--muted)}
-.history-summary span.positive{color:#16A34A}.history-summary span.negative{color:#DC2626}
-.history-chart{height:142px;margin-top:9px;position:relative;overflow:hidden}
-.history-chart svg{display:block;width:100%;height:100%;overflow:visible}
-.chart-grid{stroke:#E2E8F0;stroke-width:1;stroke-dasharray:3 4}
-.chart-line{fill:none;stroke:var(--blue);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.chart-area{fill:url(#historyFill);stroke:none}.chart-dot{fill:#fff;stroke:var(--blue);stroke-width:2}
-.chart-label{font:9px ui-monospace,monospace;fill:#64748B}.chart-y-label{font:9px ui-monospace,monospace;fill:#64748B}
-.history-loading,.history-empty{height:100%;display:grid;place-items:center;color:var(--muted);font-size:11px;text-align:center}
-.history-foot{display:flex;justify-content:space-between;gap:8px;margin-top:4px;color:#64748B;font-size:9px}
-
-/* Final popup layout refinements */
-.popup{width:600px;max-width:600px;padding:12px;border-radius:30px}
-.topbar{min-height:82px;padding:13px 17px}
-.market-title{font-size:22px;gap:11px;white-space:nowrap}
-.india-flag{width:40px;height:27px;flex-basis:40px}
-.tabs{margin:11px 0 12px;padding:4px;border-radius:26px}
-.tab{height:43px;font-size:15px;border-radius:18px}
-.tab-icon{width:36px;height:38px}
-.hero-card,.silver-hero{height:150px}
-.secondary-card{height:110px}
-.history-summary strong{font-size:20px;color:var(--blue-dark)}
-.history-summary span{padding:4px 8px;border-radius:999px;background:#DCFCE7;color:#15803D}
-.history-summary span.negative{background:#FEE2E2;color:#B91C1C}
-.history-foot{font-size:9px}
-@media(max-width:580px){.popup{width:100%;min-width:0}.market-title{font-size:18px}.update-block{gap:5px}.updated{min-width:90px}.refresh-btn{padding:7px 8px}}
-
-/* v1.3.3 — compact, single-view popup */
-html,body.popup{width:520px!important;max-width:520px!important;height:auto!important;min-height:0!important;max-height:580px!important;overflow:hidden!important}
-body.popup{padding:8px!important;border-radius:24px!important}
-.topbar{min-height:64px!important;padding:8px 10px!important;gap:6px!important;border-radius:21px!important}
-.market-title{font-size:17px!important;letter-spacing:-.55px!important;gap:7px!important}
-.india-flag{width:32px!important;height:22px!important;flex-basis:32px!important}
-.update-block{gap:5px!important}
-.updated{min-width:88px!important;min-height:43px!important;padding:5px 7px!important;border-radius:14px!important}
-.top-label{font-size:9px!important}
-.updated strong{font-size:10px!important;white-space:nowrap}
-.refresh-btn{min-height:36px!important;padding:6px 9px!important;font-size:11px!important;border-radius:14px!important;white-space:nowrap}
-.icon-btn{width:36px!important;height:36px!important;border-radius:14px!important}
-.tabs{margin:7px 0 8px!important;padding:3px!important;gap:5px!important;border-radius:20px!important}
-.tab{height:34px!important;font-size:13px!important;gap:7px!important;border-radius:13px!important}
-.tab-icon{width:29px!important;height:30px!important}
-.history-card{margin:0 0 8px!important;padding:9px 11px 7px!important;border-radius:18px!important}
-.history-head{gap:6px!important}
-.history-title{font-size:11px!important;letter-spacing:.03em!important}
-.history-subtitle{font-size:9px!important;margin-top:1px!important}
-.history-ranges{padding:2px!important}
-.history-range{padding:4px 8px!important;font-size:9px!important}
-.history-summary{margin-top:5px!important;gap:7px!important}
-.history-summary strong{font-size:15px!important}
-.history-summary span{font-size:9px!important;padding:2px 6px!important}
-.history-chart{height:66px!important;margin-top:3px!important}
-.history-foot{margin-top:0!important;font-size:8px!important}
-.history-loading,.history-empty{font-size:10px!important}
-.hero-card,.silver-hero{height:105px!important;padding:10px 15px!important;border-radius:19px!important}
-.card-heading{font-size:10px!important;gap:8px!important}
-.purity{font-size:9px!important}
-.hero-price{font-size:27px!important;margin-top:7px!important}
-.hero-foot{margin-top:3px!important}
-.rate-unit{font-size:9px!important}
-.featured-tag{font-size:9px!important;padding:3px 7px!important}
-.secondary-grid{gap:7px!important;margin-top:7px!important}
-.secondary-card{height:78px!important;padding:8px 11px!important;border-radius:17px!important}
-.secondary-card .card-heading{font-size:9px!important}
-.secondary-price{font-size:19px!important;margin-top:6px!important}
-.secondary-card .rate-unit{margin-top:2px!important}
-.bottom-row{min-height:31px!important;margin-top:7px!important;gap:5px!important}
-.price-mode{gap:4px!important}
-.mode-label{font-size:8px!important}
-.segmented{padding:1px!important}
-.segmented button{font-size:9px!important;padding:5px 7px!important}
-.notice{font-size:8px!important;max-width:145px!important}
-@media(max-width:520px){html,body.popup{width:100%!important;max-width:100%!important}.market-title{font-size:15px!important}.updated{min-width:80px!important}.notice{max-width:120px!important}}
-
-/* v1.3.5 — compact date and refresh stack */
-.topbar{align-items:center!important}
-.update-block{display:flex!important;align-items:center!important;gap:10px!important}
-.date-refresh{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;min-width:0;padding:0 2px}
-.date-refresh #updatedAt{font:700 13px ui-monospace,monospace;color:var(--ink);white-space:nowrap;letter-spacing:-.25px}
-.refresh-btn{display:inline-flex!important;align-items:center;gap:4px;min-height:0!important;padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;color:var(--blue-dark)!important;font-size:11px!important;font-weight:800!important;line-height:1.2}
-.refresh-btn:hover{text-decoration:underline}
-.refresh-btn:disabled{opacity:.5}
-.icon-btn{flex:0 0 36px}
