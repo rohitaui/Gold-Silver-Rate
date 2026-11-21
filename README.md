@@ -123,7 +123,7 @@ This project is currently distributed as an unpacked Chrome extension. Chrome's 
 
 To update an existing unpacked install, replace its project files with the newer version and click **Reload** on the extension card.
 
-> The GitHub Actions artifact is a temporary build download. A tagged, permanent GitHub Release will be added when release publishing is configured.
+> The latest tagged GitHub Release includes permanent Chrome and Edge ZIP assets. Use the direct download links at the top of this README.
 
 ## How to use
 
@@ -187,18 +187,19 @@ Gold-Silver-Rate/
 
 ## Build and validate
 
-The repository includes a GitHub Actions workflow that runs when files under `gold-silver-rate/` change, and can also be triggered manually.
+The repository includes GitHub Actions workflows that validate, package and publish the extension when relevant project files change, and can also be triggered manually.
 
-The workflow:
-1. Checks that `manifest.json` is valid JSON.
-2. Runs Node syntax checks on the JavaScript files.
-3. Packages the extension folder into a ZIP artifact.
+The workflows:
+1. Check that `manifest.json` is valid JSON.
+2. Run Node syntax checks on the JavaScript files.
+3. Package the extension for Chromium-based browsers.
+4. Attach Chrome and Edge ZIP assets to the tagged GitHub Release.
 
 To build locally:
 
 ```bash
 cd gold-silver-rate
-zip -r ../gold-silver-rate-v1.2.8.zip . -x "*.DS_Store"
+zip -r ../gold-silver-rate-v1.3.7.zip . -x "*.DS_Store"
 ```
 
 The ZIP should contain the contents of the extension folder at its root, including `manifest.json`, popup files, settings files, styles and assets.
@@ -238,11 +239,11 @@ The extension shows the observation date supplied by the upstream feed. It does 
 
 Potential next steps for the project:
 
-- [ ] Publish a permanent tagged GitHub Release with the ZIP attached.
+- [ ] Prepare Chrome Web Store listing assets and submit for review.
 - [ ] Add Chrome Web Store listing assets and submit for review.
 - [ ] Add automated checks for unexpected upstream data-shape changes.
 - [ ] Add a small, clear source/freshness detail view.
-- [ ] Add optional historical rate charts if a reliable historical source is available.
+- [ ] Expand historical coverage when the upstream provider makes reliable observations available.
 
 ## Contributing
 
