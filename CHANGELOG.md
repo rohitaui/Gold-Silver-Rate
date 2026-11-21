@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1] — 2026-11-21
+- Replaced the small README logo with a sharper 128px transparent export of the supplied emblem.
+- Pointed Manifest V3 icon slots to the higher-resolution logo asset.
+- Synced README version badges and package artifact names with the current release version.
+- Retained the single-view popup layout, dedicated GST footer and no-internal-scroll behavior from v1.4.0.
+
+
 ## [1.4.0] — 2026-11-21
 - Reworked the bottom price-mode footer to prevent the GST controls and source note from feeling cramped.
 - Reduced excess vertical spacing in the chart and rate cards to preserve a clean single-view layout.
