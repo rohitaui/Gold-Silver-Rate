@@ -1,23 +1,21 @@
 # Gold & Silver Rate UI design system
 
-The UI has been restyled using the supplied `Skylearn` Markdown design-system reference.
+The interface is adapted from the supplied Skylearn design-system reference.
 
-## Applied foundations
-- Sky blue `#3B82F6` for primary actions, selected tabs, focus and active states.
-- Sun yellow `#FBBF24` reserved for gold-related accent labels.
-- Leaf green `#22C55E` reserved for positive/updated states.
-- White page background, `#F8FAFC` surfaces and `#F1F5F9` inset surfaces.
+## Foundations
+- Sky blue `#3B82F6` for primary actions, selected tabs and focus states.
+- Sun yellow `#FBBF24` for gold-related accents.
+- Leaf green `#22C55E` for positive or updated states.
+- White background, `#F8FAFC` surfaces and `#F1F5F9` inset surfaces.
 - Ink `#0F172A`, muted ink `#475569`, subtle ink `#94A3B8`.
-- Soft card radius (20px), rounded controls (12–16px), light outline borders and restrained shadows.
-- Atkinson Hyperlegible / Nunito Sans / system fallbacks for accessible, readable text; JetBrains Mono / system monospace for prices.
-- Visible focus rings, readable labels and reduced-motion support.
+- Rounded cards and controls, restrained borders and shadows, visible focus rings and reduced-motion support.
 
 ## Intentional adaptation
-Skylearn is designed for children's learning products. Gold & Silver Rate is a financial information utility, so the UI adopts its color, typography, spacing, radius, elevation and accessibility foundations, but intentionally does not use lesson cards, mascots, confetti, reward badges, child-oriented copy or oversized kid-facing controls.
+Skylearn is designed for children's learning products. Gold & Silver Rate is a financial information utility, so the UI adopts its color, typography, spacing, radius, elevation and accessibility foundations, while omitting child-oriented illustrations, rewards and copy.
 
-## Gold & Silver Rate layout
-- Header: national rates, last updated timestamp and refresh action.
+## Layout
+- Header: India-wide rates, rate date and refresh action.
 - Tabs: Gold / Silver.
 - Gold: 24K hero rate; 22K and 18K secondary rates.
-- Silver: 1kg hero rate; 10g and 1g secondary rates.
-- Footer row: GST display switch and compact data status.
+- Silver: 10g hero rate; 1kg and 1g reference rates.
+- Footer: GST display switch and source caveat.
