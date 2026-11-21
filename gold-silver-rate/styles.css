@@ -116,3 +116,13 @@ body.popup{padding:8px!important;border-radius:24px!important}
 .segmented button{font-size:9px!important;padding:5px 7px!important}
 .notice{font-size:8px!important;max-width:145px!important}
 @media(max-width:520px){html,body.popup{width:100%!important;max-width:100%!important}.market-title{font-size:15px!important}.updated{min-width:80px!important}.notice{max-width:120px!important}}
+
+/* v1.3.5 — compact date and refresh stack */
+.topbar{align-items:center!important}
+.update-block{display:flex!important;align-items:center!important;gap:10px!important}
+.date-refresh{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;min-width:0;padding:0 2px}
+.date-refresh #updatedAt{font:700 13px ui-monospace,monospace;color:var(--ink);white-space:nowrap;letter-spacing:-.25px}
+.refresh-btn{display:inline-flex!important;align-items:center;gap:4px;min-height:0!important;padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;color:var(--blue-dark)!important;font-size:11px!important;font-weight:800!important;line-height:1.2}
+.refresh-btn:hover{text-decoration:underline}
+.refresh-btn:disabled{opacity:.5}
+.icon-btn{flex:0 0 36px}
