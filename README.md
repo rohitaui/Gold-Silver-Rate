@@ -9,7 +9,7 @@
 
 ### India’s daily gold &amp; silver benchmark rates, at a glance.
 
-A lightweight Chrome extension for checking India-wide gold and silver benchmark rates, with a historical chart, a space-saving header and a more spacious one-view layout.
+A lightweight Chrome extension for checking India-wide gold and silver benchmark rates, with a historical chart, a space-saving header and a more spacious one-view layout with a refined, lighter typographic hierarchy.
 
 <div align="center">
 
@@ -27,7 +27,7 @@ Download the ZIP directly from the latest GitHub Release. Extract it, then load 
 <br/>
 
 [![Manifest V3](https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3)
-[![Version](https://img.shields.io/badge/version-1.3.7-2563EB?style=for-the-badge)](./gold-silver-rate/manifest.json)
+[![Version](https://img.shields.io/badge/version-1.3.8-2563EB?style=for-the-badge)](./gold-silver-rate/manifest.json)
 [![Build](https://img.shields.io/badge/build-GitHub%20Actions-16A34A?style=for-the-badge&logo=githubactions&logoColor=white)](./.github/workflows/package.yml)
 [![Data](https://img.shields.io/badge/data-India%20benchmark-D97706?style=for-the-badge)](https://snapdata.dev/docs/)
 
@@ -51,7 +51,7 @@ Download the ZIP directly from the latest GitHub Release. Extract it, then load 
 | **Currency** | Indian Rupee (₹ / INR) |
 | **Data feed** | Snapdata · IBJA benchmark feed |
 | **Storage** | Chrome local storage |
-| **Current version** | 1.3.7 |
+| **Current version** | 1.3.8 |
 
 ## Why Gold & Silver Rate?
 
@@ -199,7 +199,7 @@ To build locally:
 
 ```bash
 cd gold-silver-rate
-zip -r ../gold-silver-rate-v1.3.7.zip . -x "*.DS_Store"
+zip -r ../gold-silver-rate-v1.3.8.zip . -x "*.DS_Store"
 ```
 
 The ZIP should contain the contents of the extension folder at its root, including `manifest.json`, popup files, settings files, styles and assets.
