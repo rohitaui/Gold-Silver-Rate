@@ -5,11 +5,13 @@
 
 <div align="center">
 
+<img src="https://raw.githubusercontent.com/rohitaui/Gold-Silver-Rate/main/gold-silver-rate/assets/logo-32.png" width="96" alt="Gold & Silver Rate logo">
+
 # Gold &amp; Silver Rate
 
 ### India’s daily gold &amp; silver benchmark rates, at a glance.
 
-A lightweight Chrome extension for checking India-wide gold and silver benchmark rates, with a historical chart, a space-saving header and a more spacious one-view layout with a refined, lighter typographic hierarchy.
+A lightweight Chrome extension for checking India-wide gold and silver benchmark rates, with a historical chart, a clean one-view layout and a distinctive gold-and-silver emblem.
 
 <div align="center">
 
@@ -51,7 +53,7 @@ Download the ZIP directly from the latest GitHub Release. Extract it, then load 
 | **Currency** | Indian Rupee (₹ / INR) |
 | **Data feed** | Snapdata · IBJA benchmark feed |
 | **Storage** | Chrome local storage |
-| **Current version** | 1.3.8 |
+| **Current version** | 1.3.9 |
 
 ## Why Gold & Silver Rate?
 

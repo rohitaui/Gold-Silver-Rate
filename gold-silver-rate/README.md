@@ -1,6 +1,12 @@
 # Gold & Silver Rate — Chrome Extension
 
+![Gold & Silver Rate logo](assets/logo-32.png)
+
 Gold & Silver Rate is a Chrome extension for checking India-wide daily benchmark values for gold and silver.
+
+## Brand assets
+- The supplied gold-and-silver emblem is used for the Chrome and Edge extension icons.
+- The original transparent PNG is retained as `assets/logo-32.png` and referenced by all manifest icon sizes.
 
 ## Features
 - Gold: 24K, 22K and 18K, displayed per 10 grams.

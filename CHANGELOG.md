@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.9] — 2026-11-21
+- Adopted the supplied gold-and-silver emblem as the official extension logo.
+- Added the transparent logo asset and configured Manifest V3 icons for 16px, 32px, 48px and 128px display slots.
+- Updated repository branding, extension documentation and package version.
+
+
 ## [1.3.7] — 2026-11-21
 - Synced repository documentation, install instructions and release links with the published Chrome and Edge packages.
 - Increased spacing between the header, metal tabs, history chart, rate cards and GST controls.

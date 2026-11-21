@@ -2,6 +2,11 @@
 
 The interface is adapted from the supplied Skylearn design-system reference.
 
+## Brand identity
+- Primary product mark: supplied overlapping gold-and-silver hexagonal emblem with a gold star.
+- Use the transparent `assets/logo-32.png` asset for extension identity; do not redraw, recolor or add a background plate.
+- Manifest icon entries point to the same transparent PNG so Chrome and Edge use a consistent mark.
+
 ## Foundations
 - Sky blue `#3B82F6` for primary actions, selected tabs and focus states.
 - Sun yellow `#FBBF24` for gold-related accents.
