@@ -13,7 +13,7 @@ Thanks for helping improve Gold & Silver Rate. Keep contributions focused, trans
 2. Do not present daily snapshots as live market prices.
 3. Preserve data-source attribution and price caveats.
 4. Avoid analytics, advertising and unnecessary permissions.
-5. Keep the popup compact, readable and accessible.
+5. Keep the popup readable and accessible, with deliberate breathing room while preserving the complete single-view layout without internal scrolling.
 6. Explain changes to permissions, data handling, calculations or attribution.
 
 ## Local checks
