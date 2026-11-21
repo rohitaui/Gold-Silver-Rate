@@ -1,6 +1,7 @@
 # Changelog
 
 ## [1.3.7] — 2026-11-21
+- Synced repository documentation, install instructions and release links with the published Chrome and Edge packages.
 - Increased spacing between the header, metal tabs, history chart, rate cards and GST controls.
 - Improved internal card padding and chart control spacing for a less cramped visual hierarchy.
 - Kept the popup constrained to a single view with no internal scrolling, using compact adjustments only where needed.
