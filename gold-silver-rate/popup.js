@@ -95,14 +95,24 @@ function renderHistory(observations){
 }
 async function loadHistory(force=false){
   const key=activeTab+":"+activeRange;
-  $("historyChart").innerHTML='<div class="history-loading">Loading price history…</div>';
+  $("historyChart").innerHTML='<div class="history-loading">Loading…</div>';
   if(historyCache[key]&&!force){renderHistory(historyCache[key]);return;}
   try{
     const ds=activeTab==="gold"?"gold":"silver";
-    const res=await fetch(`https://snapdata.dev/api/v1/${ds}/in/series/${activeRange}.json`,{cache:"no-cache"});
-    if(!res.ok)throw new Error("History unavailable");
-    const data=await res.json();historyCache[key]=data.observations||[];renderHistory(historyCache[key]);
-  }catch(e){$("historyLatest").textContent="—";$("historyChange").textContent="Could not load";$("historyChange").className="";$("historyCoverage").textContent="Try refreshing later";$("historyChart").innerHTML='<div class="history-empty">Historical prices could not be loaded.</div>';}
+    const url=`https://snapdata.dev/api/v1/${ds}/in/series/${activeRange}.json`;
+    const res=await fetch(url,{cache:"no-store"});
+    if(!res.ok)throw new Error(`History request failed (HTTP ${res.status})`);
+    const data=await res.json();
+    if(!Array.isArray(data.observations))throw new Error(data.error?.message||"Unexpected history response");
+    historyCache[key]=data.observations;renderHistory(historyCache[key]);
+  }catch(e){
+    console.warn("Price history:",e);
+    $("historyLatest").textContent="—";
+    $("historyChange").textContent="History unavailable";
+    $("historyChange").className="";
+    $("historyCoverage").textContent="Daily history feed";
+    $("historyChart").innerHTML='<div class="history-empty">Price history is temporarily unavailable.</div>';
+  }
 }
 
 async function loadRates() {
