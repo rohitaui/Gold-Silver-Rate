@@ -61,7 +61,7 @@ function render() {
 }
 
 function chartValue(o){
-  if(!o || o.value==null || o.status==="missing" || o.is_trading_day===false) return null;
+  if(!o || o.value==null || o.status==="missing" || o.is_trading_day===false || o.filled_from) return null;
   const n=Number(o.value); if(!Number.isFinite(n)) return null;
   return activeTab==="gold" ? n*10 : n/100;
 }
@@ -77,16 +77,16 @@ function renderHistory(observations){
   $("historyChange").textContent=(delta>=0?"+":"")+inr(displayed(delta))+" ("+(pct>=0?"+":"")+pct.toFixed(2)+"%)";
   $("historyChange").className=delta>0?"positive":delta<0?"negative":"";
   $("historyCoverage").textContent=valid.length===1?shortDate(first.date):shortDate(first.date)+" – "+shortDate(last.date)+" · "+valid.length+" sessions";
-  const W=500,H=112,T=7,B=20,L=5,R=5,min=Math.min(...valid.map(p=>p.value)),max=Math.max(...valid.map(p=>p.value)),pad=(max-min)*.16||Math.max(max*.005,1),lo=min-pad,hi=max+pad;
+  const W=500,H=142,T=8,B=23,L=48,R=7,min=Math.min(...valid.map(p=>p.value)),max=Math.max(...valid.map(p=>p.value)),pad=(max-min)*.16||Math.max(max*.005,1),lo=min-pad,hi=max+pad;
   const x=i=>L+i/Math.max(pts.length-1,1)*(W-L-R),y=v=>T+(1-(v-lo)/(hi-lo))*(H-T-B);
   let segs=[],seg=[];pts.forEach((p,i)=>{if(p.value==null){if(seg.length)segs.push(seg);seg=[];}else seg.push({...p,x:x(i),y:y(p.value)});});if(seg.length)segs.push(seg);
   const paths=segs.map(a=>a.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+","+p.y.toFixed(1)).join(" "));
   const lastSeg=segs[segs.length-1],dot=lastSeg[lastSeg.length-1];
   const area=lastSeg.length>1?lastSeg.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+","+p.y.toFixed(1)).join(" ")+` L ${dot.x} ${H-B} L ${lastSeg[0].x} ${H-B} Z`:"";
   const labels=[pts[0],pts[Math.floor((pts.length-1)/2)],pts[pts.length-1]].filter(Boolean);
-  $("historyChart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Historical price chart">
+  const yLabels=[0,.5,1].map(t=>({y:T+t*(H-T-B),v:hi-t*(hi-lo)}));\n  $("historyChart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Historical price chart">
     <defs><linearGradient id="historyFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3B82F6" stop-opacity=".18"/><stop offset="1" stop-color="#3B82F6" stop-opacity="0"/></linearGradient></defs>
-    ${[.15,.5,.85].map(t=>`<line class="chart-grid" x1="0" x2="${W}" y1="${T+t*(H-T-B)}" y2="${T+t*(H-T-B)}"/>`).join("")}
+    ${yLabels.map(a=>`<line class="chart-grid" x1="${L}" x2="${W}" y1="${a.y}" y2="${a.y}"/><text class="chart-y-label" x="0" y="${a.y+3}">${Math.round(a.v).toLocaleString("en-IN")}</text>`).join("")}
     ${area?`<path class="chart-area" d="${area}"/>`:""}${paths.map(d=>`<path class="chart-line" d="${d}"/>`).join("")}
     <circle class="chart-dot" cx="${dot.x}" cy="${dot.y}" r="4"/>
     ${labels.map((p,i)=>`<text class="chart-label" x="${i===0?L:i===1?W/2:W-R}" y="${H-3}" text-anchor="${i===0?"start":i===1?"middle":"end"}">${shortDate(p.date)}</text>`).join("")}
