@@ -2,6 +2,9 @@ const $ = id => document.getElementById(id);
 
 let settings = { priceMode: "exclusive" };
 let currentData = null;
+let activeTab = "gold";
+let activeRange = "7d";
+const historyCache = {};
 
 const inr = value => value == null || !Number.isFinite(Number(value)) ? "—" :
   "₹" + Number(value).toLocaleString("en-IN", {minimumFractionDigits: 0, maximumFractionDigits: 2});
@@ -56,6 +59,51 @@ function render() {
   $("statusLabel") && ($("statusLabel").textContent = missing ? "Partial data" : "Rates loaded");
   setNotice(`India-wide IBJA benchmark · ${settings.priceMode === "inclusive" ? "Estimated 3% GST included" : "GST not included"} · Making charges not included.`);
 }
+
+function chartValue(o){
+  if(!o || o.value==null || o.status==="missing" || o.is_trading_day===false) return null;
+  const n=Number(o.value); if(!Number.isFinite(n)) return null;
+  return activeTab==="gold" ? n*10 : n/100;
+}
+function shortDate(s){const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d).toLocaleDateString("en-IN",{day:"numeric",month:"short"});}
+function renderHistory(observations){
+  const id=activeTab==="gold"?"XAU.24K.INR.G":"XAG.INR.KG";
+  $("historySubtitle").textContent=activeTab==="gold"?"24K Gold · per 10 grams":"Silver · per 10 grams";
+  const pts=(observations||[]).filter(o=>o.instrument_id===id).sort((a,b)=>a.date.localeCompare(b.date)).map(o=>({date:o.date,value:chartValue(o)}));
+  const valid=pts.filter(p=>p.value!=null);
+  if(!valid.length){$("historyLatest").textContent="—";$("historyChange").textContent="No historical data";$("historyChange").className="";$("historyCoverage").textContent="No published observations";$("historyChart").innerHTML='<div class="history-empty">No historical prices available.</div>';return;}
+  const first=valid[0],last=valid[valid.length-1],delta=last.value-first.value,pct=first.value?delta/first.value*100:0;
+  $("historyLatest").textContent=inr(displayed(last.value));
+  $("historyChange").textContent=(delta>=0?"+":"")+inr(displayed(delta))+" ("+(pct>=0?"+":"")+pct.toFixed(2)+"%)";
+  $("historyChange").className=delta>0?"positive":delta<0?"negative":"";
+  $("historyCoverage").textContent=valid.length===1?shortDate(first.date):shortDate(first.date)+" – "+shortDate(last.date)+" · "+valid.length+" sessions";
+  const W=500,H=112,T=7,B=20,L=5,R=5,min=Math.min(...valid.map(p=>p.value)),max=Math.max(...valid.map(p=>p.value)),pad=(max-min)*.16||Math.max(max*.005,1),lo=min-pad,hi=max+pad;
+  const x=i=>L+i/Math.max(pts.length-1,1)*(W-L-R),y=v=>T+(1-(v-lo)/(hi-lo))*(H-T-B);
+  let segs=[],seg=[];pts.forEach((p,i)=>{if(p.value==null){if(seg.length)segs.push(seg);seg=[];}else seg.push({...p,x:x(i),y:y(p.value)});});if(seg.length)segs.push(seg);
+  const paths=segs.map(a=>a.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+","+p.y.toFixed(1)).join(" "));
+  const lastSeg=segs[segs.length-1],dot=lastSeg[lastSeg.length-1];
+  const area=lastSeg.length>1?lastSeg.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+","+p.y.toFixed(1)).join(" ")+` L ${dot.x} ${H-B} L ${lastSeg[0].x} ${H-B} Z`:"";
+  const labels=[pts[0],pts[Math.floor((pts.length-1)/2)],pts[pts.length-1]].filter(Boolean);
+  $("historyChart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Historical price chart">
+    <defs><linearGradient id="historyFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3B82F6" stop-opacity=".18"/><stop offset="1" stop-color="#3B82F6" stop-opacity="0"/></linearGradient></defs>
+    ${[.15,.5,.85].map(t=>`<line class="chart-grid" x1="0" x2="${W}" y1="${T+t*(H-T-B)}" y2="${T+t*(H-T-B)}"/>`).join("")}
+    ${area?`<path class="chart-area" d="${area}"/>`:""}${paths.map(d=>`<path class="chart-line" d="${d}"/>`).join("")}
+    <circle class="chart-dot" cx="${dot.x}" cy="${dot.y}" r="4"/>
+    ${labels.map((p,i)=>`<text class="chart-label" x="${i===0?L:i===1?W/2:W-R}" y="${H-3}" text-anchor="${i===0?"start":i===1?"middle":"end"}">${shortDate(p.date)}</text>`).join("")}
+  </svg>`;
+}
+async function loadHistory(force=false){
+  const key=activeTab+":"+activeRange;
+  $("historyChart").innerHTML='<div class="history-loading">Loading price history…</div>';
+  if(historyCache[key]&&!force){renderHistory(historyCache[key]);return;}
+  try{
+    const ds=activeTab==="gold"?"gold":"silver";
+    const res=await fetch(`https://snapdata.dev/api/v1/${ds}/in/series/${activeRange}.json`,{cache:"no-cache"});
+    if(!res.ok)throw new Error("History unavailable");
+    const data=await res.json();historyCache[key]=data.observations||[];renderHistory(historyCache[key]);
+  }catch(e){$("historyLatest").textContent="—";$("historyChange").textContent="Could not load";$("historyChange").className="";$("historyCoverage").textContent="Try refreshing later";$("historyChart").innerHTML='<div class="history-empty">Historical prices could not be loaded.</div>';}
+}
+
 async function loadRates() {
   $("refreshBtn").disabled = true; $("refreshIcon").textContent = "…";
   setNotice("Getting the latest India-wide rates…");
@@ -69,6 +117,7 @@ async function loadRates() {
     currentData = {gold, silver, savedAt:Date.now()};
     await chrome.storage.local.set({cachedRates:currentData});
     render();
+    await loadHistory(true);
   } catch (e) {
     $("statusLabel") && ($("statusLabel").textContent = "Could not update");
     const saved = await chrome.storage.local.get("cachedRates");
@@ -94,13 +143,19 @@ async function loadSettings() {
   }
   currentData = saved.cachedRates || null;
   render();
+  await loadHistory();
   if (currentData) { render(); setNotice("Showing your last saved rates while checking for an update…"); }
   await loadRates();
 }
 $("settingsBtn").onclick = () => chrome.runtime.openOptionsPage();
 $("refreshBtn").onclick = loadRates;
-$("inclBtn").onclick = async () => { settings.priceMode="inclusive"; await chrome.storage.local.set({settings}); render(); };
-$("exclBtn").onclick = async () => { settings.priceMode="exclusive"; await chrome.storage.local.set({settings}); render(); };
+$("inclBtn").onclick = async () => { settings.priceMode="inclusive"; await chrome.storage.local.set({settings}); render(); if(historyCache[activeTab+":"+activeRange]) renderHistory(historyCache[activeTab+":"+activeRange]); };
+$("exclBtn").onclick = async () => { settings.priceMode="exclusive"; await chrome.storage.local.set({settings}); render(); if(historyCache[activeTab+":"+activeRange]) renderHistory(historyCache[activeTab+":"+activeRange]); };
+document.querySelectorAll(".history-range").forEach(button=>button.addEventListener("click",()=>{
+  activeRange=button.dataset.range;
+  document.querySelectorAll(".history-range").forEach(b=>{const on=b===button;b.classList.toggle("active",on);b.setAttribute("aria-pressed",String(on));});
+  loadHistory();
+}));
 loadSettings();
 
 function showTab(which) {
@@ -112,6 +167,7 @@ function showTab(which) {
   $("goldTab").setAttribute("aria-pressed", String(gold));
   $("silverTab").setAttribute("aria-pressed", String(!gold));
   chrome.storage.local.set({activeTab: which});
+  if ($("historyChart")) loadHistory();
 }
 $("goldTab").onclick = () => showTab("gold");
 $("silverTab").onclick = () => showTab("silver");
