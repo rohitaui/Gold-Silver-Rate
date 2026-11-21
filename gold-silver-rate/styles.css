@@ -59,3 +59,51 @@ body.options{min-height:100vh;padding:32px}.options-wrap{max-width:620px;margin:
 .options h1{font-size:30px}.options .lead,.hint{color:var(--muted);line-height:1.6}.settings-card{margin:20px 0;padding:20px;border:1px solid var(--line);border-radius:26px;background:var(--surface)}.settings-card h2{font-size:17px}.options label{display:block;margin:13px 0 7px;color:var(--muted)}.options select{width:100%;min-height:46px;padding:10px;border:1px solid var(--line);border-radius:18px;background:white}.primary-btn{padding:12px 18px;border:0;border-radius:18px;background:var(--blue);color:#fff;font-weight:700}.options a{color:var(--blue-dark)}.hint{font-size:13px}.save-status{margin-left:10px;color:#16A34A}
 @media(max-width:600px){body.popup{width:100%;max-width:100%}.market-title{font-size:17px}.date-refresh #updatedAt{font-size:11px}.notice{max-width:125px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
+
+/* v1.3.7 — more breathing room, still one-view */
+body.popup{
+  width:560px;max-width:560px;max-height:590px;height:auto;
+  overflow:hidden;padding:12px;
+}
+.topbar{min-height:70px;padding:11px 14px;gap:12px}
+.market-title{font-size:19px;gap:10px}
+.india-flag{width:36px;height:24px;flex-basis:36px}
+.update-block{gap:12px}
+.date-refresh{gap:6px;padding:0 3px}
+.date-refresh #updatedAt{font-size:13px}
+.tabs{margin:12px 0 13px;padding:5px;gap:8px}
+.tab{height:43px;border-radius:16px;gap:10px}
+.history-card{margin:0 0 13px;padding:14px 16px 11px;border-radius:22px}
+.history-head{gap:14px}
+.history-title{font-size:13px}
+.history-subtitle{margin-top:4px;font-size:11px}
+.history-ranges{gap:4px;padding:4px}
+.history-range{padding:7px 11px;font-size:10px}
+.history-summary{margin-top:10px;gap:10px}
+.history-summary strong{font-size:17px}
+.history-chart{height:88px;margin-top:8px}
+.history-foot{margin-top:6px;font-size:9px}
+.rate-card{padding:14px 17px}
+.hero-card,.silver-hero{height:112px}
+.hero-price{margin-top:9px;font-size:31px}
+.hero-foot{margin-top:7px}
+.secondary-grid{gap:10px;margin-top:10px}
+.secondary-card{height:82px;padding:11px 14px}
+.secondary-price{margin-top:7px}
+.bottom-row{min-height:37px;margin-top:11px;gap:10px}
+.price-mode{gap:7px}
+.segmented button{padding:7px 10px}
+.notice{max-width:178px}
+@media(max-height:620px){
+  body.popup{max-height:590px}
+  .history-chart{height:78px}
+  .hero-card,.silver-hero{height:105px}
+  .secondary-card{height:76px}
+}
+@media(max-width:560px){
+  body.popup{width:100%;max-width:100%;padding:9px}
+  .market-title{font-size:16px}
+  .history-card{padding:12px}
+  .history-range{padding:6px 8px}
+  .notice{max-width:120px}
+}
