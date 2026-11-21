@@ -15,11 +15,11 @@ A lightweight Chrome extension for checking India-wide gold and silver reference
 
 ### Get the extension
 
-<a href="https://github.com/rohitaui/Gold-Silver-Rate/actions/workflows/package.yml"><img src="https://img.shields.io/badge/Download%20for%20Chrome-Latest%20ZIP-2563EB?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Download latest Chrome extension ZIP"></a>
+<a href="https://github.com/rohitaui/Gold-Silver-Rate/releases/latest/download/gold-silver-rate-chrome.zip"><img src="https://img.shields.io/badge/Download%20for%20Chrome-Latest%20ZIP-2563EB?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Download latest Chrome extension ZIP"></a>
 
 **[Download the latest extension package](https://github.com/rohitaui/Gold-Silver-Rate/actions/workflows/package.yml)**
 
-Open the latest successful **Package Chrome extension** run, scroll to **Artifacts**, and download `gold-silver-rate-v1.2.8`. Extract the ZIP, then load the extracted folder containing `manifest.json` from `chrome://extensions` with Developer mode enabled.
+Download the ZIP directly from the latest GitHub Release. Extract it, then load the extracted folder containing `manifest.json` from `chrome://extensions` with Developer mode enabled. Edge users can use the [Edge ZIP](https://github.com/rohitaui/Gold-Silver-Rate/releases/latest/download/gold-silver-rate-edge.zip).
 
 </div>
 
@@ -27,7 +27,7 @@ Open the latest successful **Package Chrome extension** run, scroll to **Artifac
 <br/>
 
 [![Manifest V3](https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3)
-[![Version](https://img.shields.io/badge/version-1.2.8-2563EB?style=for-the-badge)](./gold-silver-rate/manifest.json)
+[![Version](https://img.shields.io/badge/version-1.2.9-2563EB?style=for-the-badge)](./gold-silver-rate/manifest.json)
 [![Build](https://img.shields.io/badge/build-GitHub%20Actions-16A34A?style=for-the-badge&logo=githubactions&logoColor=white)](./.github/workflows/package.yml)
 [![Data](https://img.shields.io/badge/data-India%20benchmark-D97706?style=for-the-badge)](https://snapdata.dev/docs/)
 
@@ -51,7 +51,7 @@ Open the latest successful **Package Chrome extension** run, scroll to **Artifac
 | **Currency** | Indian Rupee (₹ / INR) |
 | **Data feed** | Snapdata · IBJA benchmark feed |
 | **Storage** | Chrome local storage |
-| **Current version** | 1.2.8 |
+| **Current version** | 1.2.9 |
 
 ## Why Gold & Silver Rate?
 
