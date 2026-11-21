@@ -1,24 +1,23 @@
 # Gold & Silver Rate — India
 
-## Install / update
-1. Extract the ZIP.
-2. Open `chrome://extensions`.
-3. Enable Developer mode.
-4. Click Load unpacked and select this project folder. For an existing install, replace the files in the same folder and click Reload.
+## Install
+1. Download the latest ZIP from the repository's Releases page.
+2. Extract the ZIP.
+3. Open `chrome://extensions` in Chrome.
+4. Enable Developer mode.
+5. Click **Load unpacked** and select the extracted `gold-silver-rate` folder.
 
-## India-wide benchmark rates
-Gold & Silver Rate fetches:
-- `https://snapdata.dev/api/v1/gold/in/latest.json`
-- `https://snapdata.dev/api/v1/silver/in/latest.json`
+## Rates and source
+The extension fetches daily India-wide benchmark data from:
+- Gold: `https://snapdata.dev/api/v1/gold/in/latest.json`
+- Silver: `https://snapdata.dev/api/v1/silver/in/latest.json`
 
-Snapdata's published feed does not require an API key or account. Rates are daily India-wide benchmarks, not city-specific jeweller prices.
+The feed is a daily benchmark snapshot, not a live intraday quote or a city-specific jeweller price.
 
 ## Display
-- Gold 24K / 22K / 18K displayed by default in INR per 10 grams.
-- Silver displayed by default in INR per 10 grams, with 1kg and 1g reference values.
-- Without GST shows the source benchmark rate.
-- With GST adds an estimated 3% to the metal rate. Making charges and other bill components are excluded.
+- Gold: 24K, 22K and 18K in INR per 10 grams.
+- Silver: 1kg, 10g and 1g reference prices.
+- GST display can be switched between benchmark price and an estimated 3% addition. Making charges and other invoice components are excluded.
 
-## Attribution / licensing
-Display attribution: `Source: Snapdata · IBJA benchmark`.
-Snapdata's gold and silver rupee datasets carry IBJA attribution terms; do not imply they are CC BY 4.0 or local shop quotes. Follow Snapdata's source and licence requirements: https://snapdata.dev/docs/
+## Attribution
+Rates are sourced from Snapdata's IBJA benchmark feed. Follow the source and licensing terms published in the [Snapdata documentation](https://snapdata.dev/docs/).
