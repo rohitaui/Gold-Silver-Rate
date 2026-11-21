@@ -60,8 +60,9 @@ function render() {
   setNotice(`India-wide IBJA benchmark · ${settings.priceMode === "inclusive" ? "Estimated 3% GST included" : "GST not included"} · Making charges not included.`);
 }
 
+
 function chartValue(o){
-  if(!o || o.value==null || o.status==="missing" || o.is_trading_day===false || o.filled_from) return null;
+  if(!o || o.value==null || o.status==="missing" || o.status==="not_backfilled" || o.status==="estimated" || o.is_trading_day===false || o.filled_from) return null;
   const n=Number(o.value); if(!Number.isFinite(n)) return null;
   return activeTab==="gold" ? n*10 : n/100;
 }
@@ -69,15 +70,30 @@ function shortDate(s){const [y,m,d]=s.split("-").map(Number);return new Date(y,m
 function renderHistory(observations){
   const id=activeTab==="gold"?"XAU.24K.INR.G":"XAG.INR.KG";
   $("historySubtitle").textContent=activeTab==="gold"?"24K Gold · per 10 grams":"Silver · per 10 grams";
-  const pts=(observations||[]).filter(o=>o.instrument_id===id).sort((a,b)=>a.date.localeCompare(b.date)).map(o=>({date:o.date,value:chartValue(o)}));
+  let rows=(observations||[]).filter(o=>o.instrument_id===id).sort((a,b)=>a.date.localeCompare(b.date));
+  if(rows.length && activeRange!=="1y"){
+    const latestDate=new Date(rows[rows.length-1].date+"T12:00:00");
+    const days=activeRange==="7d"?7:30;
+    const cutoff=new Date(latestDate);cutoff.setDate(cutoff.getDate()-(days-1));
+    const cutoffKey=cutoff.toISOString().slice(0,10);
+    rows=rows.filter(o=>o.date>=cutoffKey);
+  }
+  const pts=rows.map(o=>({date:o.date,value:chartValue(o)}));
   const valid=pts.filter(p=>p.value!=null);
-  if(!valid.length){$("historyLatest").textContent="—";$("historyChange").textContent="No historical data";$("historyChange").className="";$("historyCoverage").textContent="No published observations";$("historyChart").innerHTML='<div class="history-empty">No historical prices available.</div>';return;}
+  if(!valid.length){
+    $("historyLatest").textContent="—";
+    $("historyChange").textContent="No published prices";
+    $("historyChange").className="";
+    $("historyCoverage").textContent="No directly observed sessions in this range";
+    $("historyChart").innerHTML='<div class="history-empty">No published historical prices for this period.</div>';
+    return;
+  }
   const first=valid[0],last=valid[valid.length-1],delta=last.value-first.value,pct=first.value?delta/first.value*100:0;
   $("historyLatest").textContent=inr(displayed(last.value));
   $("historyChange").textContent=(delta>=0?"+":"")+inr(displayed(delta))+" ("+(pct>=0?"+":"")+pct.toFixed(2)+"%)";
   $("historyChange").className=delta>0?"positive":delta<0?"negative":"";
   $("historyCoverage").textContent=valid.length===1?shortDate(first.date):shortDate(first.date)+" – "+shortDate(last.date)+" · "+valid.length+" sessions";
-  const W=500,H=142,T=8,B=23,L=48,R=7,min=Math.min(...valid.map(p=>p.value)),max=Math.max(...valid.map(p=>p.value)),pad=(max-min)*.16||Math.max(max*.005,1),lo=min-pad,hi=max+pad;
+  const W=500,H=104,T=7,B=20,L=49,R=7,min=Math.min(...valid.map(p=>p.value)),max=Math.max(...valid.map(p=>p.value)),pad=(max-min)*.14||Math.max(max*.004,1),lo=min-pad,hi=max+pad;
   const x=i=>L+i/Math.max(pts.length-1,1)*(W-L-R),y=v=>T+(1-(v-lo)/(hi-lo))*(H-T-B);
   let segs=[],seg=[];pts.forEach((p,i)=>{if(p.value==null){if(seg.length)segs.push(seg);seg=[];}else seg.push({...p,x:x(i),y:y(p.value)});});if(seg.length)segs.push(seg);
   const paths=segs.map(a=>a.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+","+p.y.toFixed(1)).join(" "));
@@ -86,33 +102,40 @@ function renderHistory(observations){
   const labels=[pts[0],pts[Math.floor((pts.length-1)/2)],pts[pts.length-1]].filter(Boolean);
   const yLabels=[0,.5,1].map(t=>({y:T+t*(H-T-B),v:hi-t*(hi-lo)}));
   $("historyChart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Historical price chart">
-    <defs><linearGradient id="historyFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3B82F6" stop-opacity=".18"/><stop offset="1" stop-color="#3B82F6" stop-opacity="0"/></linearGradient></defs>
+    <defs><linearGradient id="historyFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3B82F6" stop-opacity=".17"/><stop offset="1" stop-color="#3B82F6" stop-opacity="0"/></linearGradient></defs>
     ${yLabels.map(a=>`<line class="chart-grid" x1="${L}" x2="${W}" y1="${a.y}" y2="${a.y}"/><text class="chart-y-label" x="0" y="${a.y+3}">${Math.round(a.v).toLocaleString("en-IN")}</text>`).join("")}
     ${area?`<path class="chart-area" d="${area}"/>`:""}${paths.map(d=>`<path class="chart-line" d="${d}"/>`).join("")}
-    <circle class="chart-dot" cx="${dot.x}" cy="${dot.y}" r="4"/>
-    ${labels.map((p,i)=>`<text class="chart-label" x="${i===0?L:i===1?W/2:W-R}" y="${H-3}" text-anchor="${i===0?"start":i===1?"middle":"end"}">${shortDate(p.date)}</text>`).join("")}
+    <circle class="chart-dot" cx="${dot.x}" cy="${dot.y}" r="3.5"/>
+    ${labels.map((p,i)=>`<text class="chart-label" x="${i===0?L:i===1?W/2:W-R}" y="${H-2}" text-anchor="${i===0?"start":i===1?"middle":"end"}">${shortDate(p.date)}</text>`).join("")}
   </svg>`;
 }
 async function loadHistory(force=false){
   const key=activeTab+":"+activeRange;
-  $("historyChart").innerHTML='<div class="history-loading">Loading…</div>';
+  $("historyChart").innerHTML='<div class="history-loading">Loading price history…</div>';
   if(historyCache[key]&&!force){renderHistory(historyCache[key]);return;}
-  try{
-    const ds=activeTab==="gold"?"gold":"silver";
-    const url=`https://snapdata.dev/api/v1/${ds}/in/series/${activeRange}.json`;
-    const res=await fetch(url,{cache:"no-store"});
-    if(!res.ok)throw new Error(`History request failed (HTTP ${res.status})`);
-    const data=await res.json();
-    if(!Array.isArray(data.observations))throw new Error(data.error?.message||"Unexpected history response");
-    historyCache[key]=data.observations;renderHistory(historyCache[key]);
-  }catch(e){
-    console.warn("Price history:",e);
-    $("historyLatest").textContent="—";
-    $("historyChange").textContent="History unavailable";
-    $("historyChange").className="";
-    $("historyCoverage").textContent="Daily history feed";
-    $("historyChart").innerHTML='<div class="history-empty">Price history is temporarily unavailable.</div>';
+  const ds=activeTab==="gold"?"gold":"silver";
+  const selectors=activeRange==="7d"?["7d","30d"]:activeRange==="30d"?["30d"]:["1y","all","30d"];
+  let lastError=null;
+  for(const selector of selectors){
+    try{
+      const url=`https://snapdata.dev/api/v1/${ds}/in/series/${selector}.json`;
+      const res=await fetch(url,{cache:"no-store"});
+      if(!res.ok)throw new Error(`HTTP ${res.status} for series/${selector}`);
+      const data=await res.json();
+      if(!Array.isArray(data.observations))throw new Error(data.error?.hint||data.error?.message||"Unexpected history response");
+      const rows=data.observations.filter(o=>o.instrument_id===(activeTab==="gold"?"XAU.24K.INR.G":"XAG.INR.KG"));
+      if(!rows.length)throw new Error("The history response contains no matching metal observations");
+      historyCache[key]=data.observations;
+      renderHistory(historyCache[key]);
+      if(selector!==selectors[0] && activeRange==="1y") $("historyCoverage").textContent+=" · available source history only";
+      return;
+    }catch(e){lastError=e;console.warn("Price history selector failed:",selector,e);}
   }
+  $("historyLatest").textContent="—";
+  $("historyChange").textContent="History unavailable";
+  $("historyChange").className="";
+  $("historyCoverage").textContent=lastError?.message||"Daily history feed";
+  $("historyChart").innerHTML='<div class="history-empty">Could not retrieve published history. Check your connection and retry.</div>';
 }
 
 async function loadRates() {
@@ -145,7 +168,7 @@ async function loadRates() {
   }
 }
 async function loadSettings() {
-  const saved = await chrome.storage.local.get(["settings","cachedRates"]);
+  const saved = await chrome.storage.local.get(["settings","cachedRates","activeTab"]);
   settings = {...settings, ...(saved.settings || {})};
   if (settings.apiKey || settings.backendUrl) {
     delete settings.apiKey;
@@ -153,6 +176,7 @@ async function loadSettings() {
     await chrome.storage.local.set({settings});
   }
   currentData = saved.cachedRates || null;
+  activeTab = saved.activeTab || "gold";
   render();
   await loadHistory();
   if (currentData) { render(); setNotice("Showing your last saved rates while checking for an update…"); }
