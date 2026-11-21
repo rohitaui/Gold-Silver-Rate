@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gold &amp; Silver Rate</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="popup">
+  <header class="topbar">
+    <div class="market-block"><div class="market-title">Gold &amp; Silver Rates</div></div>
+    <div class="update-block">
+      <div class="updated"><span class="top-label">RATE DATE</span><strong id="updatedAt">Waiting for rates</strong></div>
+      <button class="refresh-btn" id="refreshBtn"><span id="refreshIcon">↻</span> Refresh</button>
+      <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">⚙</button>
+    </div>
+  </header>
+  <nav class="tabs" aria-label="Choose a metal">
+    <button class="tab active" id="goldTab" aria-pressed="true"><img class="tab-icon" src="assets/gold-tab.png" alt="" aria-hidden="true">Gold</button>
+    <button class="tab" id="silverTab" aria-pressed="false"><img class="tab-icon" src="assets/silver-tab.png" alt="" aria-hidden="true">Silver</button>
+  </nav>
+  <main>
+    <section id="goldView" class="metal-view">
+      <article class="rate-card hero-card">
+        <div class="card-heading"><span>24K GOLD</span><span class="purity">99.9% PURE</span></div>
+        <div class="hero-price" id="gold24">—</div>
+        <div class="hero-foot"><span class="rate-unit">PER 10 GRAMS</span><span class="featured-tag">24K · 99.9%</span></div>
+      </article>
+      <div class="secondary-grid">
+        <article class="rate-card secondary-card">
+          <div class="card-heading"><span>22K GOLD</span><span class="purity">91.6%</span></div>
+          <div class="secondary-price" id="gold22">—</div>
+          <div class="rate-unit">PER 10 GRAMS</div>
+        </article>
+        <article class="rate-card secondary-card">
+          <div class="card-heading"><span>18K GOLD</span><span class="purity">75.0%</span></div>
+          <div class="secondary-price" id="gold18">—</div>
+          <div class="rate-unit">PER 10 GRAMS</div>
+        </article>
+      </div>
+    </section>
+    <section id="silverView" class="metal-view hidden">
+      <article class="rate-card silver-hero">
+        <div class="card-heading"><span>999 FINE SILVER</span><span class="purity">FINE SILVER</span></div>
+        <div class="hero-price" id="silver10">—</div>
+        <div class="hero-foot"><span class="rate-unit">PER 10 GRAMS</span><span class="featured-tag silver-tag">999 PURITY</span></div>
+      </article>
+      <div class="secondary-grid silver-grid">
+        <article class="rate-card secondary-card"><div class="card-heading"><span>1 KILOGRAM</span></div><div class="secondary-price" id="silverKg">—</div></article>
+        <article class="rate-card secondary-card"><div class="card-heading"><span>1 GRAM</span></div><div class="secondary-price" id="silverGram">—</div></article>
+      </div>
+    </section>
+  </main>
+  <div class="bottom-row">
+    <div class="price-mode"><span class="mode-label">SHOW PRICES</span><div class="segmented"><button id="inclBtn" class="active">With GST</button><button id="exclBtn">Without GST</button></div></div>
+    <div class="notice" id="notice">Getting the latest rates…</div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
