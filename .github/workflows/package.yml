@@ -1,0 +1,26 @@
+name: Package Chrome extension
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "gold-silver-rate/**"
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify manifest and JavaScript
+        run: |
+          python -m json.tool gold-silver-rate/manifest.json >/dev/null
+          for file in gold-silver-rate/*.js; do node --check "$file"; done
+      - name: Package extension
+        run: |
+          cd gold-silver-rate
+          zip -r ../gold-silver-rate-v1.2.8.zip . -x "*.DS_Store"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gold-silver-rate-v1.2.8
+          path: gold-silver-rate-v1.2.8.zip
+          if-no-files-found: error
