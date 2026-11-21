@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Gold & Silver Rate",
+  "version": "1.2.8",
+  "description": "India-wide daily gold and silver benchmark rates in a compact rounded popup.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Gold & Silver Rate"
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage", "alarms"],
+  "host_permissions": ["https://snapdata.dev/*"],
+  "icons": {}
+}
