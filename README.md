@@ -9,7 +9,7 @@
 
 ### India’s daily gold &amp; silver benchmark rates, at a glance.
 
-A lightweight Chrome extension for checking India-wide gold and silver reference prices without opening multiple websites.
+A lightweight Chrome extension for checking India-wide gold and silver reference prices, with a built-in historical price chart.
 
 <div align="center">
 
