@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Gold & Silver Rate",
-  "version": "1.3.2",
-  "description": "India-wide daily gold and silver benchmark rates with interactive price history.",
+  "version": "1.3.3",
+  "description": "India-wide daily gold and silver benchmark rates with a compact historical chart.",
   "action": {
     "default_popup": "popup.html",
     "default_title": "Gold & Silver Rate"
