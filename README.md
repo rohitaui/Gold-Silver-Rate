@@ -17,7 +17,7 @@ A lightweight Chrome extension for checking India-wide gold and silver reference
 
 <a href="https://github.com/rohitaui/Gold-Silver-Rate/releases/latest/download/gold-silver-rate-chrome.zip"><img src="https://img.shields.io/badge/Download%20for%20Chrome-Latest%20ZIP-2563EB?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Download latest Chrome extension ZIP"></a>
 
-**[Download the latest extension package](https://github.com/rohitaui/Gold-Silver-Rate/actions/workflows/package.yml)**
+**[Download the latest extension package](https://github.com/rohitaui/Gold-Silver-Rate/releases/latest/download/gold-silver-rate-chrome.zip)**
 
 Download the ZIP directly from the latest GitHub Release. Extract it, then load the extracted folder containing `manifest.json` from `chrome://extensions` with Developer mode enabled. Edge users can use the [Edge ZIP](https://github.com/rohitaui/Gold-Silver-Rate/releases/latest/download/gold-silver-rate-edge.zip).
 
