@@ -14,7 +14,8 @@ The interface is adapted from the supplied Skylearn design-system reference.
 Skylearn is designed for children's learning products. Gold & Silver Rate is a financial information utility, so the UI adopts its color, typography, spacing, radius, elevation and accessibility foundations, while omitting child-oriented illustrations, rewards and copy.
 
 ## Layout
-- Header: India-wide rates, rate date and refresh action.
+- Header: India flag, product title, observation date with a text-style Refresh action beneath it, and settings control.
+- Compact single-view popup: balanced spacing between header, tabs, history chart, price cards and GST controls; no internal scrolling.
 - Tabs: Gold / Silver.
 - Gold: 24K hero rate; 22K and 18K secondary rates.
 - Silver: 10g hero rate; 1kg and 1g reference rates.
