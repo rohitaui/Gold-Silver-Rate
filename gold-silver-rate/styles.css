@@ -107,3 +107,31 @@ body.popup{
   .history-range{padding:6px 8px}
   .notice{max-width:120px}
 }
+
+/* v1.3.8 — refined type hierarchy: calmer labels, confident numbers */
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.market-title{font-size:19px;font-weight:700;letter-spacing:-.45px}
+.date-refresh #updatedAt{font-weight:600;letter-spacing:-.2px}
+.refresh-btn{font-size:11px;font-weight:650;letter-spacing:.01em}
+.icon-btn{font-size:17px;font-weight:500}
+.tab{font-size:13px;font-weight:650;letter-spacing:.005em}
+.history-title{font-size:12px;font-weight:700;letter-spacing:.025em}
+.history-subtitle{font-size:11px;font-weight:500;letter-spacing:0}
+.history-range{font-size:10px;font-weight:600;letter-spacing:.01em}
+.history-summary strong{font-weight:650;letter-spacing:-.45px;font-variant-numeric:tabular-nums}
+.history-summary span{font-weight:600}
+.chart-label,.chart-y-label{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;font-weight:450}
+.history-foot{font-weight:450;letter-spacing:.005em}
+.card-heading{font-size:12px;font-weight:650;letter-spacing:.015em}
+.purity{font-size:11px;font-weight:500}
+.hero-price{font-weight:600;letter-spacing:-1.15px;font-variant-numeric:tabular-nums}
+.rate-unit{font-size:10px;font-weight:550;letter-spacing:.035em}
+.featured-tag{font-weight:600;letter-spacing:.01em}
+.secondary-card .card-heading{font-size:10px;font-weight:600}
+.secondary-price{font-weight:600;letter-spacing:-.65px;font-variant-numeric:tabular-nums}
+.mode-label{font-size:10px;font-weight:650}
+.segmented button{font-size:10px;font-weight:600}
+.notice{font-weight:450;letter-spacing:0}
+.brand-name{font-weight:700}
+.options .settings-card h2{font-weight:650}
+.primary-btn{font-weight:650}
